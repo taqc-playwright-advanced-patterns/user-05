@@ -1,12 +1,6 @@
 import type { AddToCartStrategy } from './AddToCartStrategy';
 import type { Page } from '@playwright/test';
 
-/**
- * Strategy pattern context: client code depends on the interface,
- * not on a concrete implementation.
- *
- * TODO (students): extend if needed (e.g. `setStrategy` is already provided).
- */
 export class CartContext {
   constructor(private strategy: AddToCartStrategy) {}
 

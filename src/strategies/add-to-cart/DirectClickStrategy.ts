@@ -1,16 +1,14 @@
 import type { Page } from '@playwright/test';
 import type { AddToCartStrategy } from './AddToCartStrategy';
+import { MenuPage } from '../../pages/MenuPage';
 
-/**
- * Strategy: click a drink card in the menu.
- *
- * TODO (students):
- * 1. Find a stable product locator on https://seleniumbase.io/coffee/
- * 2. Implement a click on `productName`
- * 3. Wait for the cart counter to update if needed
- */
 export class DirectClickStrategy implements AddToCartStrategy {
-  async add(_page: Page, _productName?: string): Promise<void> {
-    throw new Error('DirectClickStrategy.add() is not implemented — see README, task 2');
+  async add(page: Page, productName?: string): Promise<void> {
+    if (!productName) {
+      throw new Error('productName is required for DirectClickStrategy');
+    }
+
+    const menuPage = new MenuPage(page);
+    await menuPage.addDrink(productName);
   }
 }
